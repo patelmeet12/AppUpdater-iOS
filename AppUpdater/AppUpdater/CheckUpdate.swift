@@ -53,9 +53,6 @@ class CheckUpdate: NSObject {
     
     func getAppInfo(completion: @escaping (AppInfo?, Error?) -> Void) -> URLSessionDataTask? {
         
-        // You should pay attention on the country that your app is located, in my case I put Brazil */br/*
-        // Você deve prestar atenção em que país o app está disponível, no meu caso eu coloquei Brasil */br/*
-        
         guard let identifier = self.getBundle(key: "CFBundleIdentifier"),
               let url = URL(string: "http://itunes.apple.com/br/lookup?bundleId=\(identifier)") else {
             DispatchQueue.main.async {

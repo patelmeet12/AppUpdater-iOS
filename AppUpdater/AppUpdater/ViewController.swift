@@ -32,14 +32,18 @@ class ViewController: UIViewController {
         let whatsNewVC = storyboard?.instantiateViewController(withIdentifier: "WhatsNewVC") as! WhatsNewVC
         //self.navigationController?.pushViewController(whatsNewVC, animated: true)
         whatsNewVC.isModalInPresentation = true
-        if let sheet = whatsNewVC.sheetPresentationController {
-            
-            sheet.animateChanges {
+        if #available(iOS 15.0, *) {
+            if let sheet = whatsNewVC.sheetPresentationController {
                 
-                sheet.detents = [.large()]
-                sheet.prefersGrabberVisible = true
-                sheet.preferredCornerRadius = 16
+                sheet.animateChanges {
+                    
+                    sheet.detents = [.large()]
+                    sheet.prefersGrabberVisible = true
+                    sheet.preferredCornerRadius = 16
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
         self.present(whatsNewVC, animated: true)
     }
